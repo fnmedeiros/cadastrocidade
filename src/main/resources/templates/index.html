@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<title>Cidades</title>
+	<meta charset="utf-8" />
+	<!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+	<h1>Lista de Cidades</h1>
+	
+	<h3><a class="waves-effect waves-light btn modal-trigger" href="#modal1">Cadastrar Cidade</a></h3>
+	
+	<table class="container" id="lista">
+		<thead>
+			<tr>
+				<th>Id IBGE</th>
+				<th>UF</th>
+				<th>Nome</th>
+				<th>Capital</th>
+				<th>Longitude</th>
+				<th>Latitude</th>
+				<th>no accents</th>
+				<th>Nomes Alternativos</th>
+				<th>Microregião</th>
+				<th>Mesorregião</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+
+
+<!-- MODAL CADASTRO -->
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+      <form class="container" method="post" action="/cadastrarCidade" id="formCidade">
+		<div class="row">
+			<div class="input-field col s1">
+				Id IBGE: <input type="text" value="" name="ibge_id">
+			</div>
+			<div class="input-field col s3">
+				Nome: <input type="text" value="" name="name">
+			</div>
+			<div class="input-field col s1">
+				Estado: <input type="text" value="" name="uf">
+			</div>
+			<div class="input-field col s3">
+				Capital: <input type="text" value="" name="capital">
+			</div>
+			<div class="input-field col s2">
+				Longitude: <input type="text" value="" name="lon">
+			</div>
+			<div class="input-field col s2">
+				Longitude: <input type="text" value="" name="lon">
+			</div>
+			
+			<div class="input-field col s3">
+				no accentes: <input type="text" value="" name="no_accents">
+			</div>
+			<div class="input-field col s3">
+				Nomes Alternativos: <input type="text" value="" name="alternative_names">
+			</div>
+			<div class="input-field col s3">
+				Microregião: <input type="text" value="" name="microregion">
+			</div>
+			<div class="input-field col s3">
+				Messoregião: <input type="text" value="" name="mesoregion">
+			</div>
+		</div>
+		
+		
+		<button type="submit" class="waves-effect waves-light btn-small"><i class="material-icons left">save</i>Salvar</button>
+	</form>
+    </div>
+    <div class="modal-footer">
+      <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat waves-effect waves-light btn-small" id="btnCadastrar" >Agree</a> -->
+    </div>
+  </div>
+<!-- FIM MODAL CADASTRO -->
+
+
+
+	<!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
+    
+    
+    
+    <script>
+    
+	    function carregaCidades(){
+	        $('#lista tbody').empty(); //Limpando a tabela
+	        $.ajax({
+	            type:'get',        
+	            dataType: 'json',   
+	            url: '/cidade',
+	            success: function(dados){
+	                for(var i=0;dados.length>i;i++){
+	                    //Adicionando registros retornados na tabela
+	                    $('#lista tbody').append('<tr>'+
+							                    		'<td>'+dados[i].ibge_id+'</td>'+
+							            				'<td>'+dados[i].uf+'</td>'+
+							            				'<td>'+dados[i].name+'</td>'+
+							            				'<td>'+dados[i].capital+'</td>'+
+							            				'<td>'+dados[i].lon+'</td>'+
+							            				'<td>'+dados[i].lat+'</td>'+
+							            				'<td>'+dados[i].no_accents+'</td>'+
+							            				'<td>'+dados[i].alternative_names+'</td>'+
+							            				'<td>'+dados[i].microregion+'</td>'+
+							            				'<td>'+dados[i].mesoregion+'</td>'+
+							            			'</tr>'
+	                    							);
+	                }
+	            }
+	        });
+	    }
+	    //Fim carregaCidade
+	    
+	    function gravaCidade(){
+	    	$('#formCidade').submit()
+	    }
+	    
+	  //ENVIA FORMULARIO PARA API
+       /*$(function(){
+            $('#formCidade').submit(function(event){
+            	instance.open();
+            });
+        });*/
+	  //FIM ENVIA FORMULARIO PARA API
+	    
+	    $(document).ready(function(){
+	    	carregaCidades();
+	    	M.AutoInit();
+	    	$("#btnCadastrar").on("click", function() {
+	    			$('#formCidade').submit();
+	    			//carregaCidades();
+	    		});
+	    });
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html 	mxlns:th="http://thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<title>Cidades</title>
+	
+	<!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+	<h1>Cadastro de Cidades</h1>
+	<h3><a href="/cidades" class="waves-effect waves-light btn-large"><i class="material-icons left">keyboard_return</i>Lista de Cidades</a></h3>
+	
+	<form class="container" method="post">
+		<div class="row">
+			<div class="input-field col s2">
+				Id IBGE: <input type="text" value="" name="ibge_id">
+			</div>
+			<div class="input-field col s4">
+				Nome: <input type="text" value="" name="name">
+			</div>
+			<div class="input-field col s3">
+				Estado: <input type="text" value="" name="uf">
+			</div>
+			<div class="input-field col s3">
+				Capital: <input type="text" value="" name="capital">
+			</div>
+
+			<div class="input-field col s3">
+				Longitude: <input type="text" value="" name="lon">
+			</div>
+			<div class="input-field col s3">
+				Longitude: <input type="text" value="" name="lon">
+			</div>
+			<div class="input-field col s3">
+				no accentes: <input type="text" value="" name="no_accents">
+			</div>
+			<div class="input-field col s3">
+				Nomes Alternativos: <input type="text" value="" name="alternative_names">
+			</div>
+			<div class="input-field col s3">
+				Microregião: <input type="text" value="" name="microregion">
+			</div>
+			<div class="input-field col s3">
+				Messoregião: <input type="text" value="" name="mesoregion">
+			</div>
+		</div>
+		
+		
+		<button type="submit" class="waves-effect waves-light btn-large"><i class="material-icons left">save</i>Salvar</button>
+	</form>
+	
+	<!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</body>
+</html>
